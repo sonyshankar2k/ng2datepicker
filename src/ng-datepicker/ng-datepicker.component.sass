@@ -1,52 +1,100 @@
 $white: #ffffff
 $background: $white
 $border: #DFE3E9
-$shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.08)
-$radius: 4px
-$text: #3D495C
-$text-secondary: #A4A9B1
+$shadow: 0 1px 3px 0 rgba(0, 0, 0, .3)
+$radius: 2px
+$text: #4a4a4a
+$text-secondary: #bdc3d4
 $color: #1A91EB
+$darkBlue: #003a6f
 $redColor: #ff0000
 $yellowColor: #ffff00
-$blueColor: #008000
+$blueColor: #0a7cc1
 $fontSize: 16px
 $greenColor: #202630
+$buttonFontSize: 14px
+$buttonLineHeight: 18px
+$buttonPrimary: #0a7cc1
+$buttonPrimaryHover: #006597
+$buttonPrimaryOutline: #0a7cc1
 
 .ngx-datepicker-container
   position: relative
 
-  .ngx-datepicker-input
-    padding: 5px 10px
-    font-size: 14px
-    width: 200px
-    outline: none
-    border: 1px solid $border
+  input.ngx-datepicker-input
+    width: 82px
+    height: 44px
+    font-size: $buttonFontSize
+    line-height: $buttonLineHeight
+    color: transparent
+    background: $buttonPrimary url('/src/assets/images/iconCalendarClosed@2X.png') no-repeat center center
+    background-size: 50px 24px
+    border: 1px solid $buttonPrimary
+    border-radius: $radius
+    box-shadow: $shadow
+    cursor: pointer
+
+    &:hover
+      background-color: $buttonPrimaryHover
+      border-color: $buttonPrimaryHover
+
+    &:focus
+      outline: none !important
+      text-indent: -9999em;
+
+    &:active, &.open
+      background: $buttonPrimaryHover url('/src/assets/images/iconCalendarOpen@2X.png') no-repeat center center
+      background-size: 50px 24px
+      border-color: $buttonPrimaryHover
 
   .ngx-datepicker-calendar-container
     position: absolute
     width: 300px
     background: $background
-    top: 40px
-    left: 0
+    top: 58px
+    left: auto
+    right: 0
     box-shadow: $shadow
-    border: 1px solid $border
+    border: none
     border-radius: $radius
+    z-index: 1
+
+    &:before
+      content: ""
+      position: absolute
+      width: 0
+      height: 0
+      top: 0
+      right: 16px
+      box-sizing: border-box
+      border: 8px solid black
+      border-color: #ffffff #ffffff transparent transparent
+      transform-origin: 0 0
+      transform: rotate(-45deg)
+      box-shadow: 1px -1px 1px 0 rgba(0, 0, 0, 0.15)
+      z-index: 1
 
     .topbar-container
       width: 100%
       height: 50px
-      padding: 15px
+      padding: 1rem 1rem .75rem 1rem
       border-bottom: 1px solid $border
       display: flex
       justify-content: space-between
       align-items: center
       user-select: none
 
+      span.topbar-title
+        font-size: 16px
+        color: #202630
+
       svg
+        width: 14px
+        height: 16px
         cursor: pointer
 
         g
-          fill: #CED0DA
+          fill: #0a7cc1
 
       .topbar-title
         color: $text
@@ -73,7 +121,7 @@ $greenColor: #202630
           text-align: center
 
       .main-calendar-days, .main-calendar-years
-        padding: 15px 0
+        padding: 5px 0 15px 0
         width: 100%
         display: inline-block
         max-height: 275px
@@ -89,18 +137,100 @@ $greenColor: #202630
           cursor: pointer
           user-select: none
           border-radius: 50%
+          font-size: $fontSize
           color: $text
 
           &.is-prev-month
             color: $text-secondary
 
-          &:hover, &.is-today
+          &:hover
             background: $text-secondary
             color: $white
 
-          &.is-selected
-            background: $color
+          &.is-selected, &.is-today
+            background: $darkBlue
             color: $white
+
+          &.is-green-emotion
+            font-size: $fontSize
+            color: #202630
+            width: 40px
+            height: 40px
+            background: $white url('/src/assets/images/green-dot.png') no-repeat
+            background-size: 8px
+            background-position:  center 29px
+
+            &:hover
+              font-size: $fontSize
+              color: $white
+              width: 40px
+              height: 40px
+              background: $text-secondary url('/src/assets/images/green-dot.png') no-repeat
+              background-size: 8px
+              background-position:  center 29px
+
+            &.is-selected, &.is-today
+              font-size: $fontSize
+              color: $white
+              width: 40px
+              height: 40px
+              background: $darkBlue url('/src/assets/images/green-dot.png') no-repeat
+              background-size: 8px
+              background-position:  center 29px
+
+          &.is-yellow-emotion
+            font-size: $fontSize
+            color: #202630
+            width: 40px
+            height: 40px
+            background: $white url('/src/assets/images/yellow-dot.png') no-repeat
+            background-size: 8px
+            background-position:  center 29px
+
+            &:hover
+              font-size: $fontSize
+              color: $white
+              width: 40px
+              height: 40px
+              background: $text-secondary url('/src/assets/images/yellow-dot.png') no-repeat
+              background-size: 8px
+              background-position:  center 29px
+
+            &.is-selected, &.is-today
+              font-size: $fontSize
+              color: $white
+              width: 40px
+              height: 40px
+              background: $darkBlue url('/src/assets/images/yellow-dot.png') no-repeat
+              background-size: 8px
+              background-position:  center 29px
+
+          &.is-red-emotion
+            font-size: $fontSize
+            color: #202630
+            width: 40px
+            height: 40px
+            background: $white url('/src/assets/images/red-dot.png') no-repeat
+            background-size: 8px
+            background-position:  center 29px
+
+            &:hover
+              font-size: $fontSize
+              color: $white
+              width: 40px
+              height: 40px
+              background: $text-secondary url('/src/assets/images/red-dot.png') no-repeat
+              background-size: 8px
+              background-position:  center 29px
+
+            &.is-selected, &.is-today
+              font-size: $fontSize
+              color: $white
+              width: 40px
+              height: 40px
+              background: $darkBlue url('/src/assets/images/red-dot.png') no-repeat
+              background-size: 8px
+              background-position:  center 29px
 
       .main-calendar-years
         height: 210px
@@ -110,30 +240,3 @@ $greenColor: #202630
         .year-unit
           width: calc(100% / 3)
           border-radius: 10px
-
-  .is-green-emotion
-    font-size: $fontSize
-    color: $greenColor
-    width: 41px
-    height: 41px
-    background: #ffffff url('/src/assets/images/green-dot.png') no-repeat
-    background-size: 8px
-    background-position:  center bottom
-
-  .is-yellow-emotion
-    font-size: $fontSize
-    color: #202630
-    width: 41px
-    height: 41px
-    background: #ffffff url('/src/assets/images/yellow-dot.png') no-repeat
-    background-size: 8px
-    background-position:  center bottom
-
-  .is-red-emotion
-    font-size: $fontSize
-    color: #202630
-    width: 41px
-    height: 41px
-    background: #ffffff url('/src/assets/images/red-dot.png') no-repeat
-    background-size: 8px
-    background-position:  center bottom
